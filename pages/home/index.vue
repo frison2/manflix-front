@@ -31,87 +31,52 @@
     <!-- --------------------------------------------------------------------- -->
 
         <section class="movies">
-            
-            <div class="movies-category" :style="'grid-template-columns: repeat('+nuSection+', 100%);'">
 
-                <section
-                    v-for="index in nuSection"
-                    :key="index"
-                    :id="'section' + index"
-                    :style="'grid-template-columns: repeat('+nuItems+', auto);'"
+            <div class="categories" v-for="(movie, id) in movies_data" :key="id">
+                <h4 v-if="movie.filmes.length >= 12">{{ movie.categoria.nome }}</h4>
+                <div
+                    v-if="movie.filmes.length >= 12"
+                    class="movies-category"
+                    :style="'grid-template-columns: repeat('+nuSection+', 100%);'"
                 >
 
-                    <a :href="'#section' + (index - 1 <= 0 ? nuSection : index - 1)">←</a>
-
-                    <div
-                        class="item"
-                        v-for="i in nuItems"
-                        :key="i"
-                        @click="()=>{
-                            x = ((index - 1) * nuItems) + (i - 1);
-                            banner.image = $store.state.BASE_URL + movies_data[3].filmes[x].banner;
-                            banner.logo = $store.state.BASE_URL + movies_data[3].filmes[x].logo;
-                            banner.desc = movies_data[3].filmes[x].descricao;
-                            banner.ano = movies_data[3].filmes[x].ano;
-                            banner.temps = movies_data[3].filmes[x].temps;
-                        }"
+                    <section
+                        v-for="index in nuSection"
+                        :key="index"
+                        :id="'section' + index"
+                        :style="'grid-template-columns: repeat('+nuItems+', auto);'"
                     >
 
-                        <img
-                            v-if="movies_data[3] !== undefined"
-                            :src="$store.state.BASE_URL + movies_data[3].filmes[
-                                ((index - 1) * nuItems) + (i - 1)
-                            ].foto"
+                        <a :href="'#section' + (index - 1 <= 0 ? nuSection : index - 1)">←</a>
+
+                        <div
+                            class="item"
+                            v-for="i in nuItems"
+                            :key="i"
+                            @click="()=>{
+                                x = ((index - 1) * nuItems) + (i - 1);
+                                banner.image = $store.state.BASE_URL + movies_data[3].filmes[x].banner;
+                                banner.logo = $store.state.BASE_URL + movies_data[3].filmes[x].logo;
+                                banner.desc = movies_data[3].filmes[x].descricao;
+                                banner.ano = movies_data[3].filmes[x].ano;
+                                banner.temps = movies_data[3].filmes[x].temps;
+                            }"
                         >
 
-                    </div>
+                            <img
+                                v-if="movies_data[3] !== undefined"
+                                :src="$store.state.BASE_URL + movies_data[3].filmes[
+                                    ((index - 1) * nuItems) + (i - 1)
+                                ].foto"
+                            >
 
-                    <a :href="'#section' + (index + 1 > nuSection? 1 : index + 1)">→</a>
+                        </div>
 
-                </section>
+                        <a :href="'#section' + (index + 1 > nuSection? 1 : index + 1)">→</a>
 
-                <!-- <section id="section2">
+                    </section>
 
-                    <a href="#section1">←</a>
-
-                    <div class="item">
-                        <img src="https://conteudo.imguol.com.br/c/entretenimento/58/2022/05/12/novo-poster-da-quarta-temporada-de-stranger-things-1652368177430_v2_3x4.jpg">
-                    </div>
-                    <div class="item">
-                        <img src="https://conteudo.imguol.com.br/c/entretenimento/58/2022/05/12/novo-poster-da-quarta-temporada-de-stranger-things-1652368177430_v2_3x4.jpg">
-                    </div>
-                    <div class="item">
-                        <img src="https://conteudo.imguol.com.br/c/entretenimento/58/2022/05/12/novo-poster-da-quarta-temporada-de-stranger-things-1652368177430_v2_3x4.jpg">
-                    </div>
-                    <div class="item">
-                        <img src="https://conteudo.imguol.com.br/c/entretenimento/58/2022/05/12/novo-poster-da-quarta-temporada-de-stranger-things-1652368177430_v2_3x4.jpg">
-                    </div>
-
-                    <a href="#section3">→</a>
-
-                </section>
-
-                <section id="section3">
-
-                    <a href="#section2">←</a>
-
-                    <div class="item">
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e60d59103015959.5f43f7d599ad9.jpg">
-                    </div>
-                    <div class="item">
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e60d59103015959.5f43f7d599ad9.jpg">
-                    </div>
-                    <div class="item">
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e60d59103015959.5f43f7d599ad9.jpg">
-                    </div>
-                    <div class="item">
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e60d59103015959.5f43f7d599ad9.jpg">
-                    </div>
-
-                    <a href="#section1">→</a>
-
-                </section> -->
-
+                </div>
             </div>
 
         </section>
@@ -290,6 +255,12 @@ $width-banner: 58vw;
         z-index: 1000;
         background-color: var(--cor-fundo-banner);
         scroll-behavior: smooth;
+
+        h4{
+            color: var(--cor-font);
+            font-size: 20px;
+            margin-left: 15px;
+        }
 
         .movies-category{
             display: grid;
