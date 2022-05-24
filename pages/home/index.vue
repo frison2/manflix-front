@@ -5,24 +5,24 @@
 
             <div class="banner-info">
                 <div class="info-content">
-                    <img :src="banner.logo" alt="Movie Logo">
+                    <img :src="banner.logo" alt="Movie Logo" class="fadeClass">
                     <div class="rating">
-                        <i class="pi pi-star-fill star1"></i>
-                        <i class="pi pi-star-fill star1"></i>
-                        <i class="pi pi-star-fill star1"></i>
-                        <i class="pi pi-star-fill star1"></i>
-                        <i class="pi pi-star-fill star1"></i>
-                        <span class="inf">
+                        <i class="pi pi-star-fill star1 fadeClass"></i>
+                        <i class="pi pi-star-fill star1 fadeClass"></i>
+                        <i class="pi pi-star-fill star1 fadeClass"></i>
+                        <i class="pi pi-star-fill star1 fadeClass"></i>
+                        <i class="pi pi-star-fill star1 fadeClass"></i>
+                        <span class="inf fadeClass">
                             {{ banner.ano }} - {{ banner.temps }} temporada{{ banner.temps==1? '':'s' }}
                         </span>
                     </div>
-                    <p>{{ banner.desc }}</p>
+                    <p class="fadeClass">{{ banner.desc }}</p>
                 </div>
             </div>
 
-            <img src="manflix.png" alt="Logo Manflix" class="manflix-logo">
+            <img src="manflix.png" alt="Logo Manflix" class="manflix-logo fadeClass">
 
-            <div class="banner-image">
+            <div class="banner-image fadeClass">
                 <img :src="banner.image" alt="Movie Image">
             </div>
 
@@ -336,6 +336,19 @@ $width-banner: 58vw;
                 }
             }
         }
+    }
+}
+
+.fadeClass{
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
     }
 }
 </style>
